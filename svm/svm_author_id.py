@@ -29,7 +29,7 @@ features_train, features_test, labels_train, labels_test = preprocess()
 from sklearn.metrics import accuracy_score
 from sklearn.svm import SVC
 
-clf = SVC(kernel="rbf")
+clf = SVC(kernel="rbf", C=10000)
 
 t0 = time()
 features_train = features_train[:len(features_train)/100]
@@ -49,4 +49,5 @@ print accuracy_score(pred, labels_test)
 # 0.981226533166 (for 50%, also initially was used 50% of data for results in comments above)
 # 0.884527872582 (for 1%)
 # 0.616040955631 (for rbf)
+# 0.892491467577 (for C=10000)
 
