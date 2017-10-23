@@ -32,8 +32,8 @@ from sklearn.svm import SVC
 clf = SVC(kernel="rbf", C=10000)
 
 t0 = time()
-#features_train = features_train[:len(features_train)/100]
-#labels_train = labels_train[:len(labels_train)/100]
+features_train = features_train[:len(features_train)/100]
+labels_train = labels_train[:len(labels_train)/100]
 clf.fit(features_train, labels_train)
 print "training time:", round(time()-t0, 3), "s"
 # 216.074 s
@@ -44,6 +44,10 @@ pred = clf.predict(features_test)
 print "prediction time:", round(time()-t1, 3), "s"
 # 262.014 s
 # 4.619 s (for 1%)
+
+print pred[10] # 1
+print pred[26] # 0
+print pred[50] # 1
 
 print accuracy_score(pred, labels_test) 
 # 0.981226533166 (for 50%, also initially was used 50% of data for results in comments above)
