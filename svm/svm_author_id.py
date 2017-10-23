@@ -29,17 +29,24 @@ features_train, features_test, labels_train, labels_test = preprocess()
 from sklearn.metrics import accuracy_score
 from sklearn.svm import SVC
 
-clf = SVC(kernel="linear")
+clf = SVC(kernel="rbf")
 
 t0 = time()
 features_train = features_train[:len(features_train)/100]
 labels_train = labels_train[:len(labels_train)/100]
 clf.fit(features_train, labels_train)
-print "training time:", round(time()-t0, 3), "s" # 216.074 s, 0.061 s (for 1%)
+print "training time:", round(time()-t0, 3), "s"
+# 216.074 s
+# 0.061 s (for 1%)
 
 t1 = time()
 pred = clf.predict(features_test)
-print "prediction time:", round(time()-t1, 3), "s" # 262.014 s, 4.619 s (for 1%)
+print "prediction time:", round(time()-t1, 3), "s"
+# 262.014 s
+# 4.619 s (for 1%)
 
-print accuracy_score(pred, labels_test) # 0.981226533166, 0.925702582774 (for 1%, but the expected answer is 0.884527872582, my is incorrect because I initially was forced to use 50% of data)
+print accuracy_score(pred, labels_test) 
+# 0.981226533166 (for 50%, also initially was used 50% of data for results in comments above)
+# 0.884527872582 (for 1%)
+# 0.616040955631 (for rbf)
 
